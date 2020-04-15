@@ -1,0 +1,226 @@
+@use "sass:meta";
+@import './variables';
+
+// --- Mixin Effects --- //
+
+// Fonts
+
+@function rem($px: 14) {
+
+  $value: round(($px / 14) * 1000) / 1000 + rem;
+
+  @return $value;
+  
+}
+
+@function vw($px: 14, $vw: 1366) {
+
+  $value: round((($px / $vw) * 100) * 1000) / 1000 + vw;
+
+  @return $value;
+
+}
+
+// Transition
+
+@mixin transition($prop...) {
+  transition-property: $prop;
+  transition-duration: .4s; 
+  transition-timing-function: ease-in-out; 
+  will-change: $prop;
+}
+
+// --- Mixin Creational --- //
+
+// Buttons
+
+@mixin button($type: 'primary') {
+  align-items: center;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 10px;
+  color: $white;
+  cursor: pointer;
+  display: flex;
+  font-family: 'SF', 'Lucida Sans', Arial, sans-serif;
+  font-size: 17px;
+  height: 51px;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 246px;
+  
+  @include transition(background-color);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Arrow
+@mixin arrow($direction: "left", $color: null, $args...) {
+  
+  &::before,
+  &::after {
+    background-color: $color;
+    border-radius: 4px;
+    height: 2px;
+    width: 10px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    
+    @include pseudo();
+
+    @each $prop, $value in keywords($args) {
+      #{$prop}: $value;
+    }
+  }
+  
+  @if ($direction == "left") {
+    &::before {
+      transform: rotate(-45deg) translate(5px, -5px);
+      -webkit-transform: rotate(-45deg) translate(5px, -5px);
+      -moz-transform: rotate(-45deg) translate(5px, -5px);
+      -ms-transform: rotate(-45deg) translate(5px, -5px);
+      -o-transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    &::after {
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+    }
+  } @else if ($direction == "right") {
+    &::before {
+      transform: rotate(-135deg) translate(5px, 5px);
+      -webkit-transform: rotate(-135deg) translate(5px, 5px);
+      -moz-transform: rotate(-135deg) translate(5px, 5px);
+      -ms-transform: rotate(-135deg) translate(5px, 5px);
+      -o-transform: rotate(-135deg) translate(5px, 5px);
+    }
+    
+    &::after {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+    }
+  } @else if ($direction == "bottom") {
+    &::before {
+      transform: rotate(-135deg) translate(5px, -5px);
+      -webkit-transform: rotate(-135deg) translate(5px, -5px);
+      -moz-transform: rotate(-135deg) translate(5px, -5px);
+      -ms-transform: rotate(-135deg) translate(5px, -5px);
+      -o-transform: rotate(-135deg) translate(5px, -5px);
+}
+    
+    &::after {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+    }
+  } @else if ($direction == "top") {
+    &::before {
+      transform: rotate(-135deg) translate(-5px, 5px);
+      -webkit-transform: rotate(-135deg) translate(-5px, 5px);
+      -moz-transform: rotate(-135deg) translate(-5px, 5px);
+      -ms-transform: rotate(-135deg) translate(-5px, 5px);
+      -o-transform: rotate(-135deg) translate(-5px, 5px);
+}
+    
+    &::after {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+}
+  }
+}
+
+// Before & After
+
+@mixin pseudo($args...) {
+  @if (length($list: $args) > 0) {
+    content: $args;
+    display: block;
+    position: absolute;
+  } @else {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+}
+
+// --- Mixin Functions --- //
+
+// Media Queries
+
+@mixin mq($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+  @if $width == 'desk' {
+    @media only screen and (min-width: 1366px) {
+      @content;
+    }
+  }
+  @if $width == 'small-desk' {
+    @media only screen and (min-width: 1024px) and (max-width: 1366px) {
+      @content;
+    }
+  }
+  @if $width == 'tb-lands' {
+    @media only screen and (min-width: 961px) and (max-width: 1023px) {
+      @content;
+    }
+  }
+  @if $width == 'tb-port' {
+    @media only screen and (min-width: 769px) and (max-width: 960px) {
+      @content;
+    }
+  }
+  @if $width == 'mob-lands' {
+    @media only screen and (min-width: 576px) and (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $width == 'mob-port' {
+    @media only screen and (min-width: 320px) and (max-width: 575px) {
+      @content;
+    }
+  }
+  @if $width == 'all-desk' {
+    @media only screen and (min-width: 1024px){
+      @content;
+    }
+  }
+  @if $width == 'all-mob' {
+    @media only screen and (max-width: 768px){
+      @content;
+    }
+  }
+}
+
+// Animations
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}

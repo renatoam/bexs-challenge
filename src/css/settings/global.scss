@@ -1,0 +1,63 @@
+@import './mixins';
+
+@font-face {
+  src: url(../../assets/FontsFree-Net-SFProText-Regular.ttf);
+  font-family: SF, sans-serif;
+  font-weight: 400;
+}
+
+
+
+* {
+  box-sizing: border-box;
+  border: 0;
+  color: #FFF;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+html {
+  font-size: 14px;
+
+  @include mq('small-mob') {
+    font-size: 12px;
+  }
+}
+
+body {
+  background-color: $secondary-color;
+}
+
+a {
+  color: initial;
+}
+
+ul {
+  display: flex;
+}
+
+.container {
+  max-width: 1280px;
+  @extend %alignment;
+}
+
+.wrapper {
+  max-width: 1080px;
+  @extend %alignment;
+}
+
+%alignment {
+  margin: 0 auto;
+  width: 100%;
+
+  @include mq('all-mob') {
+    max-width: 100vw;
+  }
+}
+
+.hidden {
+  display: none;
+}
