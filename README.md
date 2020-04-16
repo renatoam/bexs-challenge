@@ -18,11 +18,17 @@ Criei alguns dados aleatórios só pra mostrar o envio dos dados através de uma
 
 Optei por usar React Hooks por achar uma abordagem mais moderna e mais simples, embora usar classes ainda tenha uma abrangênica maior no mercado.
 
-Deixei organizado num componente/page principal a maior parte do código, embora a ideia seja fragmentar o máximo possível posteriormente. Isso é devido ao tempo curto pra realização do teste.
+Deixei organizado num componente/page principal a maior parte do código, embora a ideia fosse fragmentar posteriormente. Isso é devido ao tempo curto pra realização do teste.
 
-Ainda falta implementar:
+**Disclaimer:**
 
-- Redux: pra melhorar o gerenciamento dos estados.
-- Router: pra criar páginas "fakes" de *Carrinho* e *Confirmação/Resumo* da compra.
-- Testes: a ideia é usar Jest e testar principalmente as funções (que estão num arquivo à parte) e as requisições.
-- Webpack: a ideia é deixar de usar o Create React App e usar no ambiente próprio. Optei pelo CRA devido ao prazo curto.
+- A fonte Verdana na minha máquina é ligeiramente diferente da Verdana no XD, mesmo instalando novamente. Acredito que essa diferença não irá aparecer quando forem testar, mas como poderão observar no css, a fonte padrão definida é Verdana.
+
+- Devido ao prazo, optei por:
+  - Usar Create React App
+
+  - Não usar Redux
+
+  - Não criar uma página a mais pra representar Carrinho ou Resumo e poder usar Router
+
+  - Não criar a rotina de testes (usaria JEST pra fazer), mas deixei as requisições AJAX, por ser mais rápido

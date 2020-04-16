@@ -175,13 +175,13 @@ export default function Checkout() {
               </div>
               <div className="checkout__input checkout__input--name">
                 <input type="text" name="name" id="name"
-                  placeholder="Nome completo (igual ao cartão)"
+                  placeholder="Nome (igual ao cartão)"
                   tabIndex="2"
                   onInput={e => handleCardData(e.target)}
                   onBlur={e => validateFields(e.target)}
                   required
                 />
-                <label htmlFor="name">Nome completo (igual no cartão)</label>
+                <label htmlFor="name">Nome (igual no cartão)</label>
               </div>
               <section className="checkout__group">
                 <div className="checkout__input checkout__input--expiration">
@@ -217,11 +217,11 @@ export default function Checkout() {
                   onChange={e => handleCardData(e.target)}
                   onBlur={e => validateFields(e.target)} >
                   <option value="default">Número de parcelas</option>
-                  <option value="1">1x de {formatPrice(product.price, 1)}</option>
-                  <option value="2">2x de {formatPrice(product.price, 2)}</option>
-                  <option value="3">3x de {formatPrice(product.price, 3)}</option>
-                  <option value="4">4x de {formatPrice(product.price, 4)}</option>
-                  <option value="5">5x de {formatPrice(product.price, 5)}</option>
+                  <option value="1">1x de {formatPrice(product.price, 1)} sem juros</option>
+                  <option value="2">2x de {formatPrice(product.price, 2)} sem juros</option>
+                  <option value="3">3x de {formatPrice(product.price, 3)} sem juros</option>
+                  <option value="4">4x de {formatPrice(product.price, 4)} sem juros</option>
+                  <option value="5">5x de {formatPrice(product.price, 5)} sem juros</option>
                 </select>
               </div>
               <section className="checkout__row checkout__row--button">

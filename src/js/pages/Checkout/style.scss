@@ -31,19 +31,22 @@
 
   &__column {
     height: 596px;
-    padding: 50px;
+    padding: 50px 0;
 
     @include mq('all-mob') {
-      padding: 40px 30px;
+      padding: 40px;
     }
 
     &--display {
       background-color: $primary-color;
+      padding-left: 50px;
       padding-right: 15px;
       width: 352px;
 
       @include mq('all-mob') {
         max-height: 239px;
+        padding-left: inherit;
+        padding-right: inherit;
         width: 100vw;
       }
     }
@@ -51,7 +54,7 @@
     &--information {
       display: flex;
       flex-direction: column;
-      margin: auto;
+      margin-left: 168px;
       width: 440px;
 
       @include mq('all-mob') {
@@ -74,6 +77,22 @@
 
     @include mq('all-mob') {
       justify-content: center;
+
+      &::before,
+      &::after {
+        border-radius: 25%;
+        height: 3px;
+        left: 15px;
+        width: 17px;
+      }
+
+      &::before {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+    }
+
+    strong {
+      margin-right: 5px;
     }
 
     &--desktop {
@@ -120,7 +139,7 @@
 
         @include mq('all-mob') {
           font-size: 16px;
-          width: 60%;
+          width: 47%;
         }
       }
     }
@@ -156,7 +175,7 @@
       position: relative;
 
       @include mq('all-mob') {
-        margin-top: 85px;
+        margin-top: 75px;
       }
 
       input[type="text"] {
@@ -166,6 +185,7 @@
       input[type="text"],
       select {
         border-bottom: 1px solid $secondary-color;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 17px;
         margin-bottom: 46px;
         padding: 5px 0;
@@ -253,24 +273,28 @@
     &--number {
       &::after {
         content: 'Número do cartão inválido' !important;
+        display: none;
       }
     }
     
     &--name {
       &::after {
         content: 'Insira seu nome completo' !important;
+        display: none;
       }
     }
     
     &--expiration {
       &::after {
         content: 'Data inválida' !important;
+        display: none;
       }
     }
     
     &--cvv {
       &::after {
         content: 'Código inválido' !important;
+        display: none;
       }
     }
 
@@ -323,6 +347,10 @@
         width: 13px;
 
         @include transition(top);
+
+        @include mq('all-mob') {
+          right: 55%
+        }
       }
     }
 
@@ -349,8 +377,9 @@
       top: 45%;
 
       @include mq('all-mob') {
-        font-size: 19px;
+        font-size: 21px;
         left: 14px;
+        letter-spacing: 5.5px;
       }
     }
 
@@ -388,11 +417,12 @@
     display: flex;
     font-size: 13px;
     justify-content: space-between;
-    margin: 0 12px;
+    margin-left: 24px;
     position: relative;
 
     &:not(:last-child) {
-      @include arrow('right', $primary-color, $top: 65%, $left: calc(85% + 24px));
+      margin-right: 24px;
+      @include arrow('right', $primary-color, $top: 65%, $left: calc(100% + 24px));
     }
 
     span {
